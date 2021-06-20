@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FlaskMailApplication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="icon" type="image/svg" href="/media/kalistark/Tests/Python/Flask/Flask_Mail_Application/Frontend/static/logo.svg">
+  <style>
+
+    *{
+        margin: 0;
+        padding: 0;
+        z-index:1;
+    }
+    html{
+        background:rgb(36, 27, 27);
+    }
+    .mail_form{
+        margin-top:10vh;
+        position: relative;   
+        align-items: center;
+        padding-top: 100px;
+    }
+    .card{
+        background: transparent;
+        border: none;
+    }
+    .blurred-box{
+        width: 480px;
+        height: 580px;
+        background: transparent; 
+        position: absolute;
+        left: 50%;
+        top:50vh;
+        transform: translate(-50% , -75%);
+
+        box-shadow: inset 0 0 0 250px rgba(255,255,255,0.2);
+        filter: blur(5px);
+        z-index:-2;
+    }
+    .form-group{
+        width: 350px;
+    }
+    .form-group label{
+        color: rgba(255,255,255,0.8);
+    }
+    .alert{
+        position: absolute;
+        top:0.75vh;
+        left: 50vw;
+        transform: translateX(-50%);
+        padding: 8px;
+        border: 2px solid red;
+        border-radius: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  
+    <div class="card mail_form" style="background:rgb(36, 27, 27);">
+        {% if messages %}
+        <div class="alert alert-primary" style="position: absolute;">
+            {% for i in messages %}
+                {{i}}<br>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action="." method="post">
+            <span class="blurred-box"></span>
+            <div class="form-group card-body">
+                <label for="id_tomailaddress">To Email address</label>
+                <input type="text" class="form-control" id="id_tomailaddress" placeholder="To:" name="tomailaddress">
+            </div>
+            <div class="form-group card-body">
+                <label for="id_emailsubject">Subject</label>
+                <input type="text" class="form-control" id="id_emailsubject" placeholder="Subject:" name="emailsubject">
+            </div>
+            <div class="form-group card-body">
+                <label for="id_emailmessage">Message</label>
+                <textarea class="form-control" id="id_emailmessage" placeholder="Message:" name="emailmessage" rows="6"></textarea>
+            </div>
+            <!-- <div class="form-group card-body">
+                <label for="id_emailfiles">Attachments</label>
+                <input type="file" class="form-control" name="emailfiles[]" id="id_emailfiles" style="color: white;" multiple="multiple">
+            </div> -->
+            <div class="form-group card-body">
+                <button type="submit" class="btn btn-primary btn-block">Send</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+</html>
